@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
     </head>
-    <body>
+    <body onload="outputBookmarks()">
         <h1 id="title">Bookmark your favourite websites.</h1>
         <div id="container">
             <form id="bookform">
@@ -24,9 +24,10 @@
                     <input type="submit" name="" value="Bookmark it">
                 </div>
             </form>
-            <div id="websites-booked">
+        </div>
+        
+        <div id="websitesbooked">
 
-            </div>
         </div>
         
         <script src="script.js" async defer></script>
