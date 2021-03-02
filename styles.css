@@ -88,10 +88,21 @@ body {
     text-align: left;
     font-family: 'Roboto', sans-serif;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.savedBookmarks h3 {
-    margin-left: 10px;
+.savedBookmarks a {
+    color: white;
+    padding: 5px 10px 4px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.visit {
+    background-color: #2c8a00;
+}
+
+.delete {
+    background-color: red;
 }
