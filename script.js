@@ -1,11 +1,26 @@
-
-
-
-const form = document.querySelector("#bookform")
+const form = document.querySelector("#bookform");
+const nameAlert = document.querySelector(".name");
+const urlAlert = document.querySelector(".url");
+const closeButton = document.querySelectorAll(".closebutton")
+const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+const regex = new RegExp(expression);
 
 let setBookmark = e => {
     let websiteName = document.querySelector('#websitename').value;
     let websiteUrl = document.querySelector('#websiteurl').value;
+
+    if(!websiteName) {
+        nameAlert.classList.toggle("active");
+        return false
+    } else if(!websiteUrl) {
+        urlAlert.classList.toggle("active");
+        return false
+    }
+
+    if(!websiteUrl.match(regex)){
+        urlAlert.classList.toggle("active");
+        return false
+    }
 
     let bookmark = {
         name: websiteName,
@@ -27,7 +42,13 @@ let setBookmark = e => {
     e.preventDefault();
 }
 
-function deleteBookmark(url) {
+const closeAlert = () => {
+    closeButton.forEach(item => item.addEventListener('click', e => e.currentTarget.closest(".notvalid").classList.toggle("active")));
+}
+
+closeAlert();
+
+const deleteBookmark = url => {
     let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
     for (let i = 0; i < bookmarks.length; i++) {
         if(bookmarks[i].url == url) {
@@ -38,8 +59,7 @@ function deleteBookmark(url) {
 
     outputBookmarks()
 }
-
-function outputBookmarks() {
+const outputBookmarks = () => {
     let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
     let bookmarksResults = document.querySelector("#websitesbooked");
     bookmarksResults.innerHTML = "";
